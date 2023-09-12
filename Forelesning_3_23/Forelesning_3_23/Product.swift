@@ -18,6 +18,8 @@ struct Product: Identifiable {
     
 }
 
+    var shoppingCart = [Product]()
+
 
 extension Product {
     
@@ -38,6 +40,6 @@ extension Product {
 
 func aMethod() {
     
-    Product.testReturnProducts()
+//    Product.testReturnProducts()
     
 }

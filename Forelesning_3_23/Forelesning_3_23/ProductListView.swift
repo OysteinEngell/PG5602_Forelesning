@@ -60,21 +60,50 @@ struct ProductListView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            ScrollView {
                 ForEach(products) { product in
-                    NavigationLink {
-                        ProductDetailView(product: product)
-                    } label: {
-                        ListItemView(product: product)
-                    }
-                } // Foreach
+                    HStack{
+                        NavigationLink {
+                            ProductDetailView(product: product)
+                        } label: {
+                            ListItemView(product: product)
+                        }
+                        Spacer()
+                        
+                        if isAdmin == false{
+                            
+                            
+                            UpdateProductView(
+                                minusButtonTapped: {
+                                    print("minus")
+                                    var hasRemoved = false
+                                    
+                                    shoppingCart.removeAll { filteredProduct in
+                                        if filteredProduct.id == product.id && hasRemoved == false{
+                                            hasRemoved = true
+                                            return true
+                                        }
+                                        return false
+                                    }
+                                    print(shoppingCart)
+                                },
+                                plussButtonTapped: {
+                                    print("plus")
+                                    shoppingCart.append(product)
+                                    print(shoppingCart)
+                                })
+                            .padding()
+                            .frame(width: 150)
+                        }
+                    }//HStack
+                }// Foreach
+                
                 if isAdmin {
                     Button("Legg til produkt") {
                         let newProduct = Product.init(name: "Sokker", description: "small, gule", price: 230)
                         print(products.count) // printer 2
                         products.append(newProduct)
                         isPresentingAddProductView = true
-                        
                     }// Button
                 } else {
                     // not admin
@@ -87,12 +116,12 @@ struct ProductListView: View {
                 }
             }
         }
-    }
+    } 
 }
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(products: Product.demoProducts, isAdmin: true)
+        ProductListView(products: Product.demoProducts, isAdmin: false)
     }
 }
 
