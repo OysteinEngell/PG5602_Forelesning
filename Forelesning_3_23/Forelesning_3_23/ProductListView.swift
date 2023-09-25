@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KeychainSwift
 
 enum UserLevel {
     case user
@@ -98,11 +99,8 @@ struct ProductListView: View {
                             
                         }
                         
-                        
-                        
                     } // HStack
                 } // Foreach
-                
                 
                 if isAdmin {
                     Button("Legg til produkt") {
@@ -114,7 +112,11 @@ struct ProductListView: View {
                     }// Button
                 } else {
                     // not admin
-                    Text("Du er en vanlig bruker")
+                    if KeychainSwift().get(AppStorageKeys.password.rawValue) != nil, let username = UserDefaults().object(forKey: AppStorageKeys.username.rawValue) as? String {
+                        Text("Du er logga inn: \(username)")
+                    }else{
+                        Text("logg inn i appen")
+                    }
                 }
             }.sheet(isPresented: $isPresentingAddProductView) {
                 AddProductView() { product in
