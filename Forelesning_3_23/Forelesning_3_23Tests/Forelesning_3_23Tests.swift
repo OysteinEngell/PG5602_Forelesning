@@ -19,12 +19,53 @@ final class Forelesning_3_23Tests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        let json = Product.sampleJSON
+        let decoder = JSONDecoder()
+        do{
+            let product = try decoder.decode(Product.self, from: json.data(using: .utf8)!)
+            
+            XCTAssertEqual(product.name, "Bukse")
+            XCTAssertEqual(product.description, "Grå, str 32")
+            XCTAssertEqual(product.price, 500)
+            XCTAssertEqual(product.images.count, 1)
+            let productImage = product.images.first
+            XCTAssertEqual(productImage?.url, "https://google.com")
+            XCTAssertEqual(productImage?.description, "Buksa i grønn versjon")
+        } catch let error {
+            XCTFail(error.localizedDescription)
+        }
+        
+//        let product = Product.ID
     }
+    
+    func testInvalidJSON(){
+        let json =
+                """
+                {
+                    "name" : "Bukse",
+                    "desc" : "Grå, str 32"
+                }
+                """
+        let decoder = JSONDecoder()
+        do {
+            let _ = try decoder.decode(Product.self, from: json.data(using: .utf8)!)
+            XCTFail("Should not make a product without price")
+        }catch{
+            
+        }
+    }
+    
+//    func testAnotherProductFromJSON() throws {
+//        let json =
+//                """
+//                {
+//                    "name" : "Bukse",
+//                    "desc" : "Grå, str 32",
+//                    "price" : 123
+//                }
+//                """
+//        let _ = try JSONDecoder().decode(Product.self, from: json.data(using: .uft8)!)
+//    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

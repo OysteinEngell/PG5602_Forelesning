@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		178A13312AC2F9E700817852 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A13302AC2F9E700817852 /* ProductImage.swift */; };
 		EC03BF6B2AC1985500EADDF8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC03BF6A2AC1985500EADDF8 /* KeychainSwift */; };
 		EC40E8C92AA5E6CE007A6567 /* Forelesning_3_23App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40E8C82AA5E6CE007A6567 /* Forelesning_3_23App.swift */; };
 		EC40E8CB2AA5E6CE007A6567 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40E8CA2AA5E6CE007A6567 /* ProductListView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		178A13302AC2F9E700817852 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		EC40E8C52AA5E6CE007A6567 /* Forelesning_3_23.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forelesning_3_23.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC40E8C82AA5E6CE007A6567 /* Forelesning_3_23App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forelesning_3_23App.swift; sourceTree = "<group>"; };
 		EC40E8CA2AA5E6CE007A6567 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				EC40E8F42AA5F8DF007A6567 /* Product.swift */,
 				EC40E8CC2AA5E6CF007A6567 /* Assets.xcassets */,
 				EC40E8CE2AA5E6CF007A6567 /* Preview Content */,
+				178A13302AC2F9E700817852 /* ProductImage.swift */,
 			);
 			path = Forelesning_3_23;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC40E8CB2AA5E6CE007A6567 /* ProductListView.swift in Sources */,
+				178A13312AC2F9E700817852 /* ProductImage.swift in Sources */,
 				EC40E8F52AA5F8DF007A6567 /* Product.swift in Sources */,
 				ECE7CE0A2AB9B21C0037ADE7 /* ProfileView.swift in Sources */,
 				EC40E8C92AA5E6CE007A6567 /* Forelesning_3_23App.swift in Sources */,
