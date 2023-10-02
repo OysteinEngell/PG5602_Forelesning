@@ -90,7 +90,7 @@ struct ProductListView: View {
                                     print("Minus button tapped")
                                     var hasRemoved = false
                                     shoppingCart.wrappedValue.removeAll { filteredProduct in
-                                        if filteredProduct.id == product.id,
+                                        if filteredProduct.name == product.name,
                                            hasRemoved == false {
                                             hasRemoved = true
                                             return true
