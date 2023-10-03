@@ -50,12 +50,73 @@ struct ProductListView: View {
            
             
             
-           let username = UserDefaults().object(forKey: AppStorageKeys.username.rawValue) as? String
+            let username = UserDefaults().object(forKey: AppStorageKeys.username.rawValue) as? String
         {
             userLoginStatus = "Logget inn bruker: \(username)"
         } else {
             userLoginStatus = "Vennligst logg inn i appen"
         }
+        
+        getWithClosure()
+        
+    Task {
+            var urlRequest = URLRequest.init(url: URL.init(string: "https://raw.githubusercontent.com/BeiningBogen/PG5602/master/products.json")!)
+            urlRequest.httpMethod = "GET"
+            
+            do{
+                let (data, response) = await try URLSession.shared.data(for: urlRequest)
+                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode == 200
+                else{
+                    print(response as? HTTPURLResponse)
+                    return
+                }
+                let stringResponse = String.init(data: data, encoding: .utf8)
+                print(stringResponse!)
+                
+                let products = try JSONDecoder().decode([Product].self, from: data)
+                print(statusCode)
+                
+                DispatchQueue.main.async {
+                    self.products = products
+                }
+                
+            }catch let error{
+                print(error)
+            }
+            
+        }
+    }
+    
+    func getWithClosure(){
+        
+        let urlRequest = URLRequest(url: URL.init(string: "https://raw.githubusercontent.com/BeiningBogen/PG5602/master/products.json")!)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse{
+                print(httpResponse.statusCode)
+            }
+            
+            if let data = data {
+                let stringResponse = String.init(data: data, encoding: .utf8)
+                print(stringResponse)
+                
+                do {
+                    if let products = try? JSONDecoder().decode([Product].self, from: data){
+                        
+                        DispatchQueue.main.async {
+                            self.products = products
+                        }
+                    }
+                } catch let jsonError {
+                    print(jsonError)
+                }
+                print(products)
+                
+            }else {
+                print("no data")
+            }
+        }//task
+        task.resume()
     }
     
     func addProduct() {
@@ -120,7 +181,7 @@ struct ProductListView: View {
                     }// Button
                 } else {
                     Text(userLoginStatus)
-
+                    
                 }
             }.sheet(isPresented: $isPresentingAddProductView) {
                 AddProductView() { product in
@@ -139,7 +200,7 @@ struct ProductListView: View {
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
         ProductListView(products: Product.demoProducts, isAdmin: false, shoppingCart:
-                
+                            
                 .constant([])
         )
     }
