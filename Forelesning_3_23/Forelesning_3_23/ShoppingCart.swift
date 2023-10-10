@@ -9,12 +9,26 @@ import SwiftUI
 
 struct ShoppingCart: View {
     
+    let apiClient = APIClient.error(.stolenCard)
+    
+    @State var isShowingError: Bool = false
+    @State var shownError : APIClientError? {
+//        didSet{}
+        willSet {
+            if let _ = newValue {
+                isShowingError = true
+            }else {
+                isShowingError = false
+            }
+        }
+    }
+    
     var shoppingCart: Binding<[Product]>
     @State var totalSum = 0
     
     init(shoppingCart: Binding<[Product]>) {
         self.shoppingCart = shoppingCart
-       
+        
     }
     
     func onAppear() {
@@ -24,6 +38,20 @@ struct ShoppingCart: View {
         }
         print(totalSum)
     }
+    
+    func didTapPurchase() {
+        Task {
+            
+            do{
+                try await apiClient.purchaseProducts(shoppingCart.wrappedValue)
+            }catch let error {
+                print(error)
+                shownError = error as? APIClientError
+            }
+            
+        }
+    }
+    
     
     var body: some View {
         NavigationView  {
@@ -44,21 +72,35 @@ struct ShoppingCart: View {
                     }.bold()
                 }
                 
+                Button {
+                    didTapPurchase()
+                } label: {
+                    Spacer()
+                    Text("Kjøp \(shoppingCart.count) produkter").padding().foregroundColor(.black)
+                    Spacer()
+                }.buttonStyle(.bordered)
+                    .padding()
+                    .tint(.green)
+                
             }
             .navigationTitle("Handlekurv")
         }.onAppear {
             onAppear()
+        }.sheet(isPresented: $isShowingError) {
+            Text("Noe feil skjedde")
+            Text("")
         }
     }
-}
-
-struct ShoppingCart_Previews: PreviewProvider {
-    static var previews: some View {
-        ShoppingCart(shoppingCart: .constant(
-            [
-                Product(name: "Sokker", description: "Gule", price: 500, images: [])
-            ]
-        )
-        )
+    
+    struct ShoppingCart_Previews: PreviewProvider {
+        static var previews: some View {
+            ShoppingCart(shoppingCart: .constant(
+                [
+                    Product(name: "Sokker", description: "Gule", price: 500, images: [])
+                ]
+            )
+            )
+        }
     }
+    
 }
