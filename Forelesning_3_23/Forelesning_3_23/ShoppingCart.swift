@@ -17,8 +17,8 @@ struct ShoppingCart: View {
 //        didSet {
 //
 //        }
-        willSet {
-            if let _ = newValue {
+        didSet {
+            if let _ = shownError {
                 isShowingError = true
             } else {
                 isShowingError = false
@@ -52,8 +52,6 @@ struct ShoppingCart: View {
                 print(error)
                 shownError = error as? APIClientError
             }
-            
-            
         }
     }
     
@@ -93,6 +91,22 @@ struct ShoppingCart: View {
             .navigationTitle("Handlekurv")
         }.sheet(isPresented: $isShowingError) {
             Text("Noe feil skjedde!")
+            
+            switch shownError {
+            case .failed(let underlying):
+                Text("Prøv igjen eller kontakt support")
+            case .statusCode(let statusCode):
+                Text("Noe feil skjedde. Statuskode: \(statusCode)")
+            case .notEnoughFunds:
+                Text("Du har ikke nok penger på kortet")
+            case .stolenCard:
+                Text("Kortet ditt er stjålet")
+                WebPageView(url: URL.init(string: "https://politiet.no")!)
+            case nil:
+                Text("Prøv igjen eller kontakt support")
+                
+                
+            }
         }.onAppear {
             onAppear()
         }

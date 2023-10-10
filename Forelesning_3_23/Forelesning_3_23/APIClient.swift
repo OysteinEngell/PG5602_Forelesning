@@ -37,7 +37,7 @@ extension APIClient {
         
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         if let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 200 {
-            throw APIClientError.statusCode(statusCode)
+            throw APIClientError.stolenCard
         }
         
     }
@@ -50,7 +50,7 @@ extension APIClient {
         
         return [product, product2]
     }, purchaseProducts: { products in
-//        throw APIClientError.stolenCard
+        //        throw APIClientError.stolenCard
         return
     })
     
@@ -70,5 +70,5 @@ enum APIClientError : Error {
     case notEnoughFunds
     case stolenCard
     
-//    case none
+    //    case none
 }
