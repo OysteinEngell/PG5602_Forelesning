@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172319972ADD4AEC00D700F5 /* coolImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172319962ADD4AEC00D700F5 /* coolImageStyle.swift */; };
+		172319992ADD555C00D700F5 /* CoolTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172319982ADD555C00D700F5 /* CoolTextFieldStyle.swift */; };
 		EC03BF6B2AC1985500EADDF8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC03BF6A2AC1985500EADDF8 /* KeychainSwift */; };
 		EC3352212AC2F9D700AE3645 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3352202AC2F9D700AE3645 /* ProductImage.swift */; };
 		EC40E8C92AA5E6CE007A6567 /* Forelesning_3_23App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40E8C82AA5E6CE007A6567 /* Forelesning_3_23App.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		172319962ADD4AEC00D700F5 /* coolImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coolImageStyle.swift; sourceTree = "<group>"; };
+		172319982ADD555C00D700F5 /* CoolTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolTextFieldStyle.swift; sourceTree = "<group>"; };
 		EC3352202AC2F9D700AE3645 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		EC40E8C52AA5E6CE007A6567 /* Forelesning_3_23.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forelesning_3_23.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC40E8C82AA5E6CE007A6567 /* Forelesning_3_23App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forelesning_3_23App.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				EC40E8C82AA5E6CE007A6567 /* Forelesning_3_23App.swift */,
+				172319982ADD555C00D700F5 /* CoolTextFieldStyle.swift */,
 				ECE7CE072AB86DB90037ADE7 /* SettingsView.swift */,
 				ECE7CE092AB9B21C0037ADE7 /* ProfileView.swift */,
 				ECE7CE052AB86D1F0037ADE7 /* ShoppingCart.swift */,
@@ -134,6 +139,7 @@
 				EC40E8F22AA5F81C007A6567 /* ProductDetailView.swift */,
 				EC40E8F42AA5F8DF007A6567 /* Product.swift */,
 				EC3352202AC2F9D700AE3645 /* ProductImage.swift */,
+				172319962ADD4AEC00D700F5 /* coolImageStyle.swift */,
 				EC40E8CC2AA5E6CF007A6567 /* Assets.xcassets */,
 				EC40E8CE2AA5E6CF007A6567 /* Preview Content */,
 			);
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC40E8CB2AA5E6CE007A6567 /* ProductListView.swift in Sources */,
+				172319972ADD4AEC00D700F5 /* coolImageStyle.swift in Sources */,
 				EC3352212AC2F9D700AE3645 /* ProductImage.swift in Sources */,
 				EC40E8F52AA5F8DF007A6567 /* Product.swift in Sources */,
 				ECE7CE0A2AB9B21C0037ADE7 /* ProfileView.swift in Sources */,
@@ -310,6 +317,7 @@
 				ECE7CE082AB86DB90037ADE7 /* SettingsView.swift in Sources */,
 				EC7F257B2AB0740300001D37 /* UpdateProductView.swift in Sources */,
 				EC40E8F32AA5F81C007A6567 /* ProductDetailView.swift in Sources */,
+				172319992ADD555C00D700F5 /* CoolTextFieldStyle.swift in Sources */,
 				EC8549CC2AD5624200683F2E /* WebpageView.swift in Sources */,
 				EC7F25772AAF282900001D37 /* AddProductView.swift in Sources */,
 				EC7F25792AAF31B200001D37 /* MyButton.swift in Sources */,

@@ -18,7 +18,7 @@ struct AddProductView: View {
     @State var newProductName: String = ""
     @State var newProductPrice: String = ""
     @State var newProductDescription: String = ""
-    
+    @State var image: Image? = Image("productImage")
     @State var isShowingErrorAlert: Bool = false
     
     @State var isShowingPhotoPickerView = false
@@ -41,7 +41,7 @@ struct AddProductView: View {
     }
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        VStack() {
             HStack {
                 Text("Legg til nytt produkt")
                     .font(.title)
@@ -49,11 +49,29 @@ struct AddProductView: View {
                 Spacer()
             } // title hstack
             
-            TextField("Produktnavn", text: $newProductName)
             
-            TextField("Beskrivelse", text: $newProductDescription)
-            TextField("Pris", text: $newProductPrice)
+                if let image = image {
+                    image
+                        .resizable()
+                        .modifier(CoolImageStyle())
+                }
             
+            
+            Group{
+                TextField("Produktnavn", text: $newProductName)
+                TextField("Beskrivelse", text: $newProductDescription)
+                TextField("Pris", text: $newProductPrice)
+                
+            }.modifier(CoolTextFieldStyle()).padding()
+            
+            Button {
+                didTapPhotoPickerButton()
+            } label: {
+                Text("Velg produktbilde")
+            }
+            .buttonStyle(.borderedProminent)
+            
+            Spacer()
             
             Button() {
                 // user tapped button
@@ -69,17 +87,14 @@ struct AddProductView: View {
             .buttonStyle(.borderedProminent)
             .padding()
             
-            Button {
-                didTapPhotoPickerButton()
-            } label: {
-                Text("Velg produktbilde")
-            }
-            .buttonStyle(.borderedProminent)
-            Spacer()
+           
+            
 
         }.sheet(isPresented: $isShowingPhotoPickerView, content: {
             PhotoPickerView(sourceType: .photoLibrary) { image in
                 print(image)
+                self.image = Image(uiImage: image)
+                isShowingPhotoPickerView = false
             }
                 
         })
