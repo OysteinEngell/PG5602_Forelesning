@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172B08B22AE680B300A98C29 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 172B08B02AE680B300A98C29 /* Model.xcdatamodeld */; };
+		172B08B42AE681F100A98C29 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B08B32AE681F100A98C29 /* DataController.swift */; };
+		172B08B62AE6860800A98C29 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B08B52AE6860800A98C29 /* StoreView.swift */; };
 		EC03BF6B2AC1985500EADDF8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC03BF6A2AC1985500EADDF8 /* KeychainSwift */; };
 		EC3352212AC2F9D700AE3645 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3352202AC2F9D700AE3645 /* ProductImage.swift */; };
 		EC40E8C92AA5E6CE007A6567 /* PG5602App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40E8C82AA5E6CE007A6567 /* PG5602App.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		172B08B12AE680B300A98C29 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		172B08B32AE681F100A98C29 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		172B08B52AE6860800A98C29 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		EC3352202AC2F9D700AE3645 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		EC40E8C52AA5E6CE007A6567 /* pg6502-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pg6502-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC40E8C82AA5E6CE007A6567 /* PG5602App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PG5602App.swift; sourceTree = "<group>"; };
@@ -106,6 +112,8 @@
 				EC85498E2AD40AB600683F2E /* APIClient.swift */,
 				EC40E8CC2AA5E6CF007A6567 /* Assets.xcassets */,
 				EC40E8C82AA5E6CE007A6567 /* PG5602App.swift */,
+				172B08B52AE6860800A98C29 /* StoreView.swift */,
+				172B08B32AE681F100A98C29 /* DataController.swift */,
 				EC40E8CE2AA5E6CF007A6567 /* Preview Content */,
 				ECF3606C2ADE9E0000FDD661 /* Models */,
 				ECF3606B2ADE9CF300FDD661 /* UI */,
@@ -185,6 +193,7 @@
 			children = (
 				EC40E8F42AA5F8DF007A6567 /* Product.swift */,
 				EC3352202AC2F9D700AE3645 /* ProductImage.swift */,
+				172B08B02AE680B300A98C29 /* Model.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,10 +312,13 @@
 				EC8549CE2AD56ADE00683F2E /* PhotoPickerView.swift in Sources */,
 				ECE7CE082AB86DB90037ADE7 /* SettingsView.swift in Sources */,
 				EC7F257B2AB0740300001D37 /* UpdateProductView.swift in Sources */,
+				172B08B22AE680B300A98C29 /* Model.xcdatamodeld in Sources */,
 				EC40E8F32AA5F81C007A6567 /* ProductDetailView.swift in Sources */,
 				ECF360642ADE9AB100FDD661 /* Product.swift in Sources */,
 				ECE593712ADD555E00AFDF6D /* CoolTextFieldStyle.swift in Sources */,
 				EC7F25772AAF282900001D37 /* AddProductView.swift in Sources */,
+				172B08B62AE6860800A98C29 /* StoreView.swift in Sources */,
+				172B08B42AE681F100A98C29 /* DataController.swift in Sources */,
 				EC7F25792AAF31B200001D37 /* MyButton.swift in Sources */,
 				ECE7CE062AB86D1F0037ADE7 /* ShoppingCart.swift in Sources */,
 				EC85498F2AD40AB600683F2E /* APIClient.swift in Sources */,
@@ -591,6 +603,19 @@
 			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		172B08B02AE680B300A98C29 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				172B08B12AE680B300A98C29 /* Model.xcdatamodel */,
+			);
+			currentVersion = 172B08B12AE680B300A98C29 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EC40E8BD2AA5E6CE007A6567 /* Project object */;
 }
