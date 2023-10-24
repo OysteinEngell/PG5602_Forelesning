@@ -31,12 +31,12 @@ struct PG5602App: App {
             
             
             
-          
+            
             
             /// NB flere måter å skrive ting på i Swift:
-//            Array<String>  ==   [String]
-//            Dictionary<String, Any>  == [String : Any]
-//            () == Void
+            //            Array<String>  ==   [String]
+            //            Dictionary<String, Any>  == [String : Any]
+            //            () == Void
             
             
             
@@ -55,9 +55,9 @@ struct PG5602App: App {
             // hent ut path til documents
             
             let fileURL = try fileManager.url(for: .documentDirectory,
-                                                      in: .userDomainMask,
-                                                      appropriateFor: nil,
-                                                      create: false)
+                                              in: .userDomainMask,
+                                              appropriateFor: nil,
+                                              create: false)
                 .appendingPathComponent("data.json")
             try data.write(to: fileURL)
             
@@ -72,7 +72,7 @@ struct PG5602App: App {
         WindowGroup {
             TabView {
                 ProductListView(products: Product.demoProducts, isAdmin: true, shoppingCart: $shoppingCart)
-//                    .badge(99)
+                //                    .badge(99)
                     .tabItem {
                         Label("Produkter", systemImage: "tray.and.arrow.up.fill")
                     }
@@ -96,12 +96,10 @@ struct PG5602App: App {
                 
             }.onAppear {
                 onAppear()
-<<<<<<< Updated upstream
-            }
-=======
-            }.environment(\.managedObjectContext, dataController.container.viewContext)
->>>>>>> Stashed changes
-            
-        }
+            }  
+        }.environment(\.managedObjectContext, dataController.container.viewContext)
+        
+        
     }
 }
+
