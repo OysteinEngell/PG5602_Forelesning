@@ -17,7 +17,6 @@ class DataController: ObservableObject {
                 print(error)
             }
             print(description)
-            
         }
     }
 }

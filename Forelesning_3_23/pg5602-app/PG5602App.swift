@@ -96,7 +96,11 @@ struct PG5602App: App {
                 
             }.onAppear {
                 onAppear()
+<<<<<<< Updated upstream
             }
+=======
+            }.environment(\.managedObjectContext, dataController.container.viewContext)
+>>>>>>> Stashed changes
             
         }
     }
