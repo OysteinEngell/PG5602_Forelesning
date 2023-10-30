@@ -11,18 +11,41 @@ import MapKit
 
 struct StoreView: View {
     
-    
+    enum SheetState {
+        case addStore
+        case openingHours(store: Store)
+        case none
+    }
     
     @Environment(\.managedObjectContext) var moc
     
     @FetchRequest(sortDescriptors: [.init(key: "name", ascending: true)]) var stores: FetchedResults<Store>
     
-    @State var isShowingAddStoreView = false
+    @State var isShowingSheet = false
+    @State var sheetState = SheetState.none
+    
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: .constant(.init(center: .init(latitude: 10, longitude: 10), span: .init(latitudeDelta: 1, longitudeDelta: 1))))
+//            Map(coordinateRegion: .constant(.init(center: .init(latitude: 10, longitude: 10), span: .init(latitudeDelta: 1, longitudeDelta: 1))))
                 
+            Map(mapRect:
+                    .constant(.world),
+                annotationItems: stores) { store in
+                
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(store.latitude), longitude: CLLocationDegrees(store.longitude))) {
+                    HStack{
+                        Circle().fill(.black)
+                        Text(store.name ?? "Ukjent navn")
+                    }.onTapGesture {
+                        print("did tap \(store.name ?? "?")")
+                        sheetState = .openingHours(store: store)
+                        isShowingSheet = true
+                    }
+                }
+                
+//                MapMarker(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(store.latitude), longitude: CLLocationDegrees(store.longitude)))
+            }
             
             Text("Hello, World!")
             ForEach(stores) { store in
@@ -54,7 +77,8 @@ struct StoreView: View {
                 moc.saveAndPrintError()
             }
             Button("Add new store") {
-                isShowingAddStoreView = true
+                sheetState = .addStore
+                isShowingSheet = true
             }
             .buttonStyle(.bordered)
         }.onAppear {
@@ -63,11 +87,22 @@ struct StoreView: View {
             } else {
                 
             }
-        }.sheet(isPresented: $isShowingAddStoreView) {
-            AddStoreView(isPresented: $isShowingAddStoreView)
-                .onDisappear {
-                    print(isShowingAddStoreView)
-                }
+        }.sheet(isPresented: $isShowingSheet) {
+            switch sheetState {
+            case .addStore :  AddStoreView(isPresented: $isShowingSheet)
+                    .onDisappear {
+                        print(isShowingSheet)
+                    }
+            case .openingHours(store: let store):
+                Text("\(store.openingHours ?? "??")")
+                    .presentationDetents([.fraction(0.3)])
+            case .none:
+                Text("None")
+                    .presentationDetents([.fraction(0.3)])
+            }
+           
+        }.task {
+            
         }
     }
 }
