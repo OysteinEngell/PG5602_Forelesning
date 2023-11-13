@@ -10,6 +10,10 @@ import SwiftUI
 struct ProductDetailView: View {
     let product: Product
     
+    @State var scale: CGFloat = 1
+    @State var rotationAngle: CGFloat = 0
+    @State var imageScale: CGFloat = 200
+    
     init(product: Product) {
         self.product = product
     }
@@ -29,7 +33,7 @@ struct ProductDetailView: View {
             Image("productImage")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 200)
+                .frame(width: imageScale)
             
             
             Text(product.description)
@@ -47,6 +51,16 @@ struct ProductDetailView: View {
             
             Button {
                 // TODO: buy product
+                withAnimation(Animation.easeIn(duration: 0.5)) {
+                    scale = 1.3
+                    rotationAngle += 360
+                }
+                
+                withAnimation(Animation.easeIn(duration: 0.5).delay(0.6)) {
+                    scale = 1
+                }
+                
+              
                 print("bought \(product.name)")
             } label: {
                 ZStack {
@@ -56,7 +70,15 @@ struct ProductDetailView: View {
                     Text("Kjøp")
                 }
             }
+//            .scaleEffect(scale)
+//            .animation(.spring(), value: scale)
+//            .rotationEffect(Angle(degrees: rotationAngle))
+//            .animation(.easeInOut, value: rotationAngle)
 
+        }.onAppear{
+            withAnimation(Animation.easeOut(duration: 0.5).delay(0.4)){
+                imageScale = 300
+            }
         }
         
     }
