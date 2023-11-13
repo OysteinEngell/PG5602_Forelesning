@@ -16,18 +16,18 @@ struct APIClient {
     var getStores: (() async throws -> [Store])
     
     
-//    func getProducts() -> [Product] {
-//        if isRunninsTest {
-//
-//
-//        } else {
-//
-//        }
-//    }
-//
-//    func purchaseProducts(products: [Product]) -> Void {
-//
-//    }
+    //    func getProducts() -> [Product] {
+    //        if isRunninsTest {
+    //
+    //
+    //        } else {
+    //
+    //        }
+    //    }
+    //
+    //    func purchaseProducts(products: [Product]) -> Void {
+    //
+    //    }
     
 }
 
@@ -62,38 +62,32 @@ extension APIClient {
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         if let statusCode = (response as? HTTPURLResponse)?.statusCode {
             switch statusCode {
-                case 200...299:
-                    // OK
-                    return try JSONDecoder().decode([Store].self, from: data)
-                    break
-                case 400...499:
-                    // my fault
-                    break
-                case 500...599:
-                    // servers fault
-                    break
-                default:
-                    break
+            case 200...299:
+                // OK
+                return try JSONDecoder().decode([Store].self, from: data)
+            default:
+                throw APIClientError.statusCode(statusCode)
             }
         }
+        throw APIClientError.unknown
     }
     )
     
     static let demo = APIClient(getProducts: {
-    
+        
         return Product.demoProducts
         
     }, purchaseProducts: { products in
         
-//        Task.sleep(for: Duration(secondsComponent: 15, attosecondsComponent: 0))
+        //        Task.sleep(for: Duration(secondsComponent: 15, attosecondsComponent: 0))
         return
     }, getStores: {
-        var store = Store()
-        store.name = "Testbutikk 1"
-        store.longitude = 10.342423
-        store.latitude = 9.32423132
-        store.openingHours = "man-lør 10:00-17:00"
-        return [store]
+        //        var store = Store()
+        //        store.name = "Testbutikk 1"
+        //        store.longitude = 10.342423
+        //        store.latitude = 9.32423132
+        //        store.openingHours = "man-lør 10:00-17:00"
+        return []
     })
     
     static func error(_ error: APIClientError) -> APIClient {
@@ -113,23 +107,24 @@ enum APIClientError : Error {
     case statusCode(Int)
     case notEnoughFunds
     case stolenCard
+    case unknown
     
-//    case none
+    //    case none
 }
 
 
-extension Store: Decodable {
-    
-    enum CodingKeys: CodingKey {
-        case name
-        case latitude
-    }
-    
-    public required convenience init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.latitude = try container.decodeIfPresent(Float.self, forKey: .latitude)
-    }
-    
-    
-}
+//extension Store: Decodable {
+//
+//    enum CodingKeys: CodingKey {
+//        case name
+//        case latitude
+//    }
+//
+//    public required convenience init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+//        self.latitude = try container.decodeIfPresent(Float.self, forKey: .latitude)
+//    }
+
+
+//}
