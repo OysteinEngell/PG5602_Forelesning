@@ -70,10 +70,10 @@ struct ProductDetailView: View {
                     Text("Kjøp")
                 }
             }
-//            .scaleEffect(scale)
-//            .animation(.spring(), value: scale)
-//            .rotationEffect(Angle(degrees: rotationAngle))
-//            .animation(.easeInOut, value: rotationAngle)
+            .scaleEffect(scale)
+            .animation(.spring(), value: scale)
+            .rotationEffect(Angle(degrees: rotationAngle))
+            .animation(.easeInOut, value: rotationAngle)
 
         }.onAppear{
             withAnimation(Animation.easeOut(duration: 0.5).delay(0.4)){

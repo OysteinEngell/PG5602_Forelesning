@@ -52,8 +52,6 @@ struct ShoppingCart: View {
                 shownError = error as! APIClientError
                 isShowingError = true
             }
-            
-            
         }
     }
     

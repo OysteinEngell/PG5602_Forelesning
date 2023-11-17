@@ -100,7 +100,7 @@ struct PG5602App: App {
                 
             }.onAppear {
                 onAppear()
-            }.environment(\.managedObjectContext,       dataController.container.viewContext)
+            }.environment(\.managedObjectContext, dataController.container.viewContext)
             
         }
     }

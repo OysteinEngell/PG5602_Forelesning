@@ -30,7 +30,7 @@ class DataController: ObservableObject {
 }
 
 
-func testStuff() {
-    DataController.shared
-//    UIApplication.shared
-}
+//func testStuff() {
+//    DataController.shared
+////    UIApplication.shared
+//}
